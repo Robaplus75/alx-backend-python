@@ -26,6 +26,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
                   ]
                   }
         cls.get_patcher = patch('requests.get', **config)
+
         cls.mock = cls.get_patcher.start()
 
     def test_public_repos(self):
@@ -37,7 +38,6 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
 
         self.assertEqual(test_class.public_repos(), self.expected_repos)
         self.assertEqual(test_class.public_repos("XLICENSE"), [])
-
         self.mock.assert_called()
 
     def test_public_repos_with_license(self):
@@ -46,7 +46,6 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
 
         self.assertEqual(test_class.public_repos(), self.expected_repos)
         self.assertEqual(test_class.public_repos("XLICENSE"), [])
-
         self.assertEqual(test_class.public_repos(
             "apache-2.0"), self.apache2_repos)
         self.mock.assert_called()
@@ -68,7 +67,6 @@ class TestGithubOrgClient(unittest.TestCase):
         """tests githuborgclient"""
         test_class = GithubOrgClient(input)
         test_class.org()
-
         mock.assert_called_once_with(f'https://api.github.com/orgs/{input}')
 
     def test_public_repos_url(self):
@@ -77,7 +75,6 @@ class TestGithubOrgClient(unittest.TestCase):
                    new_callable=PropertyMock) as mock:
             payload = {"repos_url": "World"}
             mock.return_value = payload
-
             test_class = GithubOrgClient('test')
             result = test_class._public_repos_url
             self.assertEqual(result, payload["repos_url"])
@@ -108,5 +105,4 @@ class TestGithubOrgClient(unittest.TestCase):
     def test_has_license(self, repo, license_key, expected):
         """ tests if it has license """
         result = GithubOrgClient.has_license(repo, license_key)
-
         self.assertEqual(result, expected)
