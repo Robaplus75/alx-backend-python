@@ -12,6 +12,7 @@ class DatabaseConnection:
         return db_conn
 
     def __exit__(self, exc_type, exc_value, traceback):
+        db_conn.close()
         return False
 
 
