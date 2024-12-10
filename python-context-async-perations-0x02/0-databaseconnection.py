@@ -19,7 +19,7 @@ class DatabaseConnection:
 with DatabaseConnection('robel', 'localhost', '123') as db:
     db_cursor = db.cursor()
     db_cursor.execute("use airbnb_db;")
-    db_cursor.execute("SELECT * FROM User;")
+    db_cursor.execute("SELECT * FROM users;")
 
     rows = db_cursor.fetchall()
 
