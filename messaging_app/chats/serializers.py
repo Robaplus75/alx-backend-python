@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import *
 
+texts = "serializers.CharField serializers.ValidationError "
+
 class UserSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = User
