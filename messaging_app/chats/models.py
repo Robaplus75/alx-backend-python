@@ -29,6 +29,6 @@ class Message(models.Model):
 
 class Conversation(models.Model):
 	conversation_id = models.UUIDField(primary_key=True, default=uuid.uuid4, db_index=True)
-	participants_id = models.ForeignKey(User, on_delete=False)
+	participants_id = models.ForeignKey(User, on_delete=False, related_name='converstions')
 	created_at = models.DateTimeField(auto_now_add=True)
 

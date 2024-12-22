@@ -12,12 +12,12 @@ class MessageSerializer(serializers.ModelSerializer):
 		fields = '__all__'
 
 class ConversationSerializer(serializers.ModelSerializer):
-	messages = MessageSerializer(many=True, read_only=True)  # Assuming a related_name for messages
-    message_count = serializers.SerializerMethodField()  # Example of using SerializerMethodField
+	messages = MessageSerializer(many=True, read_only=True)
+    message_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Conversation
         fields = ['id', 'participants', 'messages', 'start_time', 'message_count']
 
     def get_message_count(self, obj):
-        return obj.messages.count()  # Assuming messages is a related name for the Message model
+        return obj.messages.count()
