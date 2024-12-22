@@ -1,11 +1,14 @@
 from django.urls import path
-from rest_framework.routers import DefaultRouter
+from rest_framework import routers
 from .views import ConversationViewSet, MessageViewSet
 
-urlpatterns = [
-]
 
-router = DefaultRouter()
+router = routers.DefaultRouter()
 router.register('conversations', ConversationViewSet)
 router.register('messages', MessageViewSet)
-urlpatterns = urlpatterns + router.urls
+
+NestedDefaultRouter = False
+
+urlpatterns = [
+    path('api/', include((router.urls, 'chats'))),
+]
