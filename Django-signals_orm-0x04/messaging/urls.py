@@ -7,4 +7,3 @@ urlpatterns = [
 
 ]
 
-# The /conversation/<message_id>/ endpoint retrieves a message and its replies.
