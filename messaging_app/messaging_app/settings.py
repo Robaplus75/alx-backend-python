@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -8,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qr)9^snafeljt&418jq$h^ne&nl2xn38=cmbkcxyy2ut$%mavc'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-qr)9^snafeljt&418jq$h^ne&nl2xn38=cmbkcxyy2ut$%mavc')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -73,6 +74,26 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+
+#     'default': {
+
+#         'ENGINE': 'django.db.backends.mysql',
+
+#         'NAME': os.environ.get('DB_NAME', 'default_db_name'),
+
+#         'USER': os.environ.get('DB_USER', 'default_user'),
+
+#         'PASSWORD': os.environ.get('DB_PASSWORD', 'default_password'),
+
+#         'HOST': os.environ.get('DB_HOST', 'localhost'),
+
+#         'PORT': os.environ.get('DB_PORT', '3306'),
+
+#     }
+
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -124,6 +145,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = 'chats.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
