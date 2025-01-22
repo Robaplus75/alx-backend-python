@@ -1,5 +1,5 @@
 FROM python:3.10
-
+# -p
 WORKDIR /app
 
 COPY ./requirements.txt .
