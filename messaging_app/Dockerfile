@@ -10,5 +10,5 @@ RUN pip install gunicorn
 COPY . .
 
 EXPOSE 8000
-
+# -p
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "messaging_app.wsgi:application"]
