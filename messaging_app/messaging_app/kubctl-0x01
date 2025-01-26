@@ -1,0 +1,19 @@
+#!/bin/bash
+
+kubectl scale deployment django-messaging-app --replicas=3
+
+kubectl rollout status deployment/django-messaging-app
+
+kubectl get pods
+
+if ! command -v wrk &> /dev/null
+then
+    echo "Installing wrk..."
+    sudo apt-get update
+    sudo apt-get install -y wrk
+fi
+
+wrk -t12 -c400 -d30s http://localhost:8080
+
+
+kubectl top pods
